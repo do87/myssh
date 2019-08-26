@@ -1,0 +1,18 @@
+#!/usr/bin/env bash
+
+script_path="$( cd "$(dirname "$0")" ; pwd -P )"
+
+if [ ! -f $script_path/.env ]; then
+    cp $script_path/env.example $script_path/.env
+fi
+source $script_path/.env
+
+vms_env=$(jq -r '. | objects | keys[]' $script_path/servers.json | fzf --preview 'x={}; jq -r ". | .\"$x\" | .[].name " '$script_path'/servers.json')
+if [[ "$vms_env" == "" ]]; then
+    exit 1
+fi
+cmd=$(jq -rc ". | .\"$vms_env\"  | .[].name" $script_path/servers.json | fzf --preview 'x={}; jq -r ".[] | map(select(.name | contains(\"$x\"))) | .[].cmd" '$script_path'/servers.json');
+if [[ "$cmd" == "" ]]; then
+    exit 1
+fi
+eval "$(jq -r ".[] | map(select(.name | contains(\"$cmd\"))) | .[].cmd" $script_path/servers.json)";

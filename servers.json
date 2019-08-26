@@ -1,0 +1,44 @@
+{
+    "DEV": [
+    {
+        "name": "SERVER 1",
+        "cmd": "ssh ${vssh_user}@server1.dev.com"
+    },
+    {
+        "name": "SERVER 2",
+        "cmd": "ssh ${vssh_user}@server2.dev.com"
+    },
+    {
+        "name": "SERVER 3",
+        "cmd": "ssh ${vssh_user}@server3.dev.com"
+    }
+    ],
+    "TEST": [
+    {
+        "name": "SERVER 1",
+        "cmd": "ssh ${vssh_user}@server1.test.com"
+    },
+    {
+        "name": "SERVER 2",
+        "cmd": "ssh ${vssh_user}@server2.test.com"
+    },
+    {
+        "name": "SERVER 3",
+        "cmd": "ssh ${vssh_user}@server3.test.com"
+    }
+    ],
+    "QA": [
+    {
+        "name": "SERVER 1",
+        "cmd": "ssh ${vssh_user}@server1.qa.com"
+    },
+    {
+        "name": "SERVER 2",
+        "cmd": "ssh ${vssh_user}@server2.qa.com"
+    },
+    {
+        "name": "SERVER 3",
+        "cmd": "ssh ${vssh_user}@server3.qa.com"
+    }
+    ]
+}
